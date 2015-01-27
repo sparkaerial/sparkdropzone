@@ -1,0 +1,14 @@
+extends layout
+
+block content
+	h1= title
+	p Upload your site images here
+
+	form#siteinformation(action='/target')
+		input(type="text", name="Pilot Name")
+		input(type="text", name="Site Name")
+		input(type="date", name="Date")
+		input(type="submit", value="login")
+	
+
+
