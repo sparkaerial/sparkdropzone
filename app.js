@@ -10,10 +10,10 @@ var multer = require('multer');
 /** 
  * Database Configuration
  */
-var dbConfig = require('./db');
-var mongoose = require('mongoose');
+var mongoose = require('./db');
+// var mongoose = require('mongoose');
 // Connect to DB
-mongoose.connect(dbConfig.url);
+// mongoose.connect(dbConfig.url);
 
 
 /** 
