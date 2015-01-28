@@ -85,4 +85,7 @@ if (app.get('env') === 'development') {
     });
 }
 
+app.listen(process.env.PORT || 3000);
+
+
 module.exports = app;
