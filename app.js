@@ -6,11 +6,13 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var multer = require('multer');
 
+var amazon = require('./config/amazon.js');
+
 
 /** 
  * Database Configuration
  */
-var mongoose = require('./db');
+var mongoose = require('./config/db');
 // var mongoose = require('mongoose');
 // Connect to DB
 // mongoose.connect(dbConfig.url);

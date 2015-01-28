@@ -2,8 +2,6 @@ var express = require('express');
 var router = express.Router();
 
 var isAuthenticated = function (req, res, next) {
-  // if user is authenticated in the session, call the next() to call the next request handler 
-  // Passport adds this method to request object. A middleware is allowed to add properties to
   // request and response objects
   if (req.isAuthenticated())
     return next();
@@ -15,7 +13,6 @@ module.exports = function(passport){
 
   /* GET login page. */
   router.get('/', function(req, res) {
-      // Display the Login page with any flash message, if any
     res.render('index', { message: req.flash('message') });
   });
 
@@ -48,6 +45,39 @@ module.exports = function(passport){
     req.logout();
     res.redirect('/');
   });
+
+  /***********************************************************************************  
+  *   Lists all Projects
+  */
+  router.get('/projects', isAuthenticated, function(req, res) {
+    res.render('projects', { title: 'Projects', user: req.user });
+  });
+
+  router.get('/about', isAuthenticated, function(req, res) {
+    res.render('about', { title: 'About', user: req.user });
+  });
+
+  router.get('/s3', isAuthenticated, function(req, res) {
+    res.render('s3', { title: 'S3 Buckets', user: req.user });
+  });
+
+  router.get('/profile', isAuthenticated, function(req, res) {
+    res.render('s3', { title: 'Profile', user: req.user });
+  });
+
+
+
+  /**
+  *   @Submit: Upload Drag and Drop Photos
+  *   @Redirect: /projects
+  */
+  router.post('/target', function(req, res) {
+    console.log(req.body) // form fields
+    console.log(req.files) // form files
+
+    res.redirect("projects");
+  });
+
 
   return router;
 }
