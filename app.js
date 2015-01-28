@@ -87,7 +87,12 @@ if (app.get('env') === 'development') {
     });
 }
 
-app.listen(process.env.PORT || 3000);
+if (process.env.NODE_ENV == 'Production') {
+    var port = process.env.PORT || 8000;
+    app.listen(port);
+    console.log('Listening on Port: ' + port);
+}
+
 
 
 module.exports = app;
