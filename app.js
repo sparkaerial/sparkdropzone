@@ -28,7 +28,7 @@ app.set('view engine', 'jade');
 // app.use(favicon());
 app.use(logger('dev'));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded());
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -38,17 +38,14 @@ app.use(express.static(path.join(__dirname, 'public')));
  */
 var passport = require('passport');
 var expressSession = require('express-session');
-// TODO - Why Do we need this key ?
 app.use(expressSession({secret: 'mySecretKey'}));
 app.use(passport.initialize());
 app.use(passport.session());
 
- // Using the flash middleware provided by connect-flash to store messages in session
- // and displaying in templates
+// Initialize Passport
 var flash = require('connect-flash');
 app.use(flash());
 
-// Initialize Passport
 var initPassport = require('./passport/init');
 initPassport(passport);
 
