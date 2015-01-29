@@ -65,6 +65,18 @@ module.exports = function(passport){
     res.render('s3', { title: 'Profile', user: req.user });
   });
 
+  /* GET login page. */
+  router.get('/maps', function(req, res) {
+    res.render('map', { message: req.flash('message') });
+  });
+
+
+  /* GET login page. */
+  router.get('/map/:mapId', function(req, res) {
+    console.log('MAP ID:' + req.param("mapId"));
+    res.render('map', { mapId: req.param("mapId") });
+  });
+
 
 
   /**
